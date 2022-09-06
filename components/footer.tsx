@@ -1,12 +1,16 @@
+import Link from 'next/link';
+
 export default function Footer() {
   return (
     <>
       <footer className="text-gray-600">
         <div className="bg-gray-100">
           <div className="container mx-auto flex flex-col items-center px-5 py-6 sm:flex-row">
-            <a className="flex items-center justify-center font-medium text-gray-900 md:justify-start">
-              <span className="ml-3 text-xl">Tailblocks</span>
-            </a>
+            <Link href="/">
+              <a className="flex items-center justify-center font-medium text-gray-900 md:justify-start">
+                <span className="ml-3 text-xl">레도 월드</span>
+              </a>
+            </Link>
             <p className="mt-4 text-sm text-gray-500 sm:ml-6 sm:mt-0">
               © 2022 Tailblocks —
               <a

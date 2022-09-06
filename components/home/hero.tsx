@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Animation from './animation';
 
 export default function Hero() {
@@ -16,9 +17,11 @@ export default function Hero() {
           try-hard chambray.
         </p>
         <div className="flex justify-center">
-          <button className="inline-flex rounded border-0 bg-blue-500 py-2 px-6 text-lg text-white hover:bg-blue-600 focus:outline-none">
-            프로젝트 보러 가기
-          </button>
+          <Link href="/projects">
+            <a className="inline-flex rounded border-0 bg-blue-500 py-2 px-6 text-lg text-white hover:bg-blue-600 focus:outline-none">
+              프로젝트 보러 가기
+            </a>
+          </Link>
         </div>
       </div>
       <div className="w-5/6 md:w-1/2 lg:w-full lg:max-w-lg">
