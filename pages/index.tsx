@@ -1,15 +1,12 @@
 import type { NextPage } from 'next';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  padding: 0 2em;
-`;
+import Layout from '@components/layout';
 
 const Home: NextPage = () => {
   return (
-    <Container>
+    <Layout>
       <h1>Redo World</h1>
-    </Container>
+      <h3 className="font-bold">안녕하세요</h3>
+    </Layout>
   );
 };
 
