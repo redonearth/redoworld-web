@@ -18,9 +18,7 @@ export default function Hero() {
         </p>
         <div className="flex justify-center">
           <Link href="/projects">
-            <a className="inline-flex rounded border-0 bg-blue-500 py-2 px-6 text-lg text-white hover:bg-blue-600 focus:outline-none">
-              프로젝트 보러 가기
-            </a>
+            <a className="go-project-btn">프로젝트 보러 가기</a>
           </Link>
         </div>
       </div>

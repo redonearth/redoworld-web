@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import DarkModeButton from './dark-mode-button';
 
 export default function Header() {
   return (
@@ -24,10 +25,12 @@ export default function Header() {
           </Link>
           <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto">
             <Link href="/projects">
-              <a className="mr-5 hover:text-gray-900">프로젝트</a>
+              <a className="mr-5 hover:text-gray-900 dark:hover:text-slate-200">
+                프로젝트
+              </a>
             </Link>
             <a
-              className="mr-5 hover:text-gray-900"
+              className="mr-5 hover:text-gray-900 dark:hover:text-slate-200"
               href="https://www.notion.so/redonearth/Redonearth-s-Resume-b9a2e826aa62434bb9229cc0c1e70dc9"
               target="_blank"
               rel="noreferrer"
@@ -35,20 +38,7 @@ export default function Header() {
               연락하기
             </a>
           </nav>
-          <button className="mt-4 inline-flex items-center rounded border-0 bg-gray-100 py-1 px-3 text-base hover:bg-gray-200 focus:outline-none md:mt-0">
-            Button
-            <svg
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="ml-1 h-4 w-4"
-              viewBox="0 0 24 24"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </button>
+          <DarkModeButton />
         </div>
       </header>
     </>

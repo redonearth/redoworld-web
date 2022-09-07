@@ -15,9 +15,11 @@ export default function Layout({ children, title }: ILayoutProps) {
         <title>{title && `${title} | `}레도 월드</title>
         <meta name="description" content="잘 하는 프론트엔드 개발자가 되자." />
       </Head>
-      <Header />
-      {children}
-      <Footer />
+      <div className="bg-primary">
+        <Header />
+        {children}
+        <Footer />
+      </div>
     </>
   );
 }
