@@ -2,31 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg-primary {
-  @apply bg-white dark:bg-slate-800;
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-slate-900 dark:text-white;
+  }
+
+  footer {
+    @apply bg-gray-100 text-gray-600 dark:bg-slate-600/20 dark:text-white;
+  }
+
+  a {
+    @apply text-slate-500 hover:text-slate-700 dark:text-slate-400;
+  }
+
+  p {
+    @apply text-slate-500 dark:text-slate-400;
+  }
 }
 
-.go-project-btn {
-  @apply inline-flex rounded border-0 bg-blue-500 py-2 px-6 text-lg text-white hover:bg-blue-600 focus:outline-none dark:text-white;
+@layer components {
+  .go-project-btn {
+    @apply inline-flex rounded border-0 bg-blue-500 py-2 px-6 text-lg text-white hover:bg-blue-600 focus:outline-none dark:text-white;
+  }
+
+  .project-card {
+    @apply flex w-full transform flex-col rounded-xl border border-gray-300 bg-slate-50 transition duration-300 hover:scale-105 hover:shadow-lg dark:border-gray-200/50 dark:bg-slate-700 dark:hover:shadow-gray-500/40;
+  }
+
+  .project-link {
+    @apply font-semibold text-blue-500 hover:text-blue-300 dark:text-blue-400 dark:hover:text-blue-200;
+  }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply text-slate-900 dark:text-white;
-}
-
-footer {
-  @apply bg-gray-100 text-gray-600 dark:bg-slate-600/20 dark:text-white;
-}
-
-a {
-  @apply text-slate-500 hover:text-slate-700 dark:text-slate-400;
-}
-
-p {
-  @apply text-slate-500 dark:text-slate-400;
+@layer utilities {
+  .bg-primary {
+    @apply bg-white dark:bg-slate-800;
+  }
 }

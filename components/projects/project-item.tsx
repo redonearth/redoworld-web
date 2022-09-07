@@ -19,7 +19,7 @@ export default function ProjectItem({
   const stacks = Stacks.multi_select;
 
   return (
-    <div className="m-3 flex w-full flex-col rounded-xl bg-slate-100 dark:bg-slate-700">
+    <div className="project-card">
       <div className="relative h-[275px] w-full">
         {coverImage ? (
           <Image
@@ -37,18 +37,28 @@ export default function ProjectItem({
       <div className="flex flex-col p-4">
         <h1 className="text-lg">{title}</h1>
         <h3 className="mt-2">{description}</h3>
-        <div className="mt-2 flex space-x-2">
+        <div className="my-2 flex space-x-2">
           {stacks.map((stack) => (
             <span
-              className="rounded-md bg-sky-200 px-2 py-1 text-sm dark:bg-sky-700"
+              className="rounded-md bg-sky-200 px-2 py-1 text-xs dark:bg-sky-700"
               key={stack.id}
             >
               {stack.name}
             </span>
           ))}
         </div>
-        <a href={gitHub}>GitHub Repository</a>
-        <a href={demo}>Demo</a>
+        <div className="mt-2 flex flex-col space-y-2 text-sm">
+          {gitHub && (
+            <a className="project-link" href={gitHub}>
+              GitHub Repository
+            </a>
+          )}
+          {demo && (
+            <a className="project-link" href={demo}>
+              Demo
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
