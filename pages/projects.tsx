@@ -62,7 +62,7 @@ export default function Projects({ projects: { results } }: IProjects) {
             {results.length !== 0 ? results.length : 0}
           </span>
         </h1>
-        <div className="m-6 grid grid-cols-1 gap-8 py-10 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 py-10 md:mx-10 md:grid-cols-2 lg:w-[75vw] lg:grid-cols-3">
           {results.map((project) => (
             <ProjectItem data={project} key={project.id} />
           ))}

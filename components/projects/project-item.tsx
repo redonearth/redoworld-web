@@ -37,11 +37,11 @@ export default function ProjectItem({
       <div className="flex flex-col p-4">
         <h1 className="text-lg">{title ? title : '프로젝트 제목'}</h1>
         <h3 className="mt-2">{description ? description : '설명'}</h3>
-        <div className="my-2 flex space-x-2">
+        <div className="my-2 flex flex-wrap gap-1">
           {stacks &&
             stacks.map((stack) => (
               <span
-                className="rounded-md bg-sky-200 px-2 py-1 text-xs dark:bg-sky-700"
+                className="rounded-md bg-sky-200 px-2 py-1 text-xs tracking-tighter dark:bg-sky-700"
                 key={stack.id}
               >
                 {stack.name}
@@ -50,12 +50,22 @@ export default function ProjectItem({
         </div>
         <div className="mt-2 flex flex-col space-y-2 text-sm">
           {gitHub && (
-            <a className="project-link" href={gitHub}>
+            <a
+              className="project-link"
+              href={gitHub}
+              target="_blank"
+              rel="noreferrer"
+            >
               GitHub Repository
             </a>
           )}
           {demo && (
-            <a className="project-link" href={demo}>
+            <a
+              className="project-link"
+              href={demo}
+              target="_blank"
+              rel="noreferrer"
+            >
               Demo
             </a>
           )}
