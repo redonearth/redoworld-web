@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { IProjectData } from 'pages/projects';
+import { ProjectData } from './page';
 
-interface IProps {
-  data: IProjectData;
+interface ProjectItemProps {
+  data: ProjectData;
 }
 
 export default function ProjectItem({
@@ -10,7 +10,7 @@ export default function ProjectItem({
     properties: { Name, GitHub, Demo, Description, Stacks },
     cover,
   },
-}: IProps) {
+}: ProjectItemProps) {
   const title = Name ? Name?.title[0]?.plain_text : '';
   const gitHub = GitHub ? GitHub?.url : '';
   const demo = Demo ? Demo?.url : '';
@@ -25,7 +25,7 @@ export default function ProjectItem({
           <Image
             className="rounded-t-xl object-cover"
             src={coverImage}
-            layout="fill"
+            fill
             quality={100}
             alt="Cover Image"
             priority={true}

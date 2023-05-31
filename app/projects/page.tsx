@@ -1,7 +1,6 @@
-import Layout from '@components/layout';
-import ProjectItem from '@components/projects/project-item';
+import ProjectItem from './project-item';
 
-export interface IProjectData {
+export interface ProjectData {
   id: string;
   cover: {
     file: {
@@ -46,33 +45,14 @@ export interface IProjectData {
     };
   };
 }
-interface IProjects {
+
+interface Projects {
   projects: {
-    results: IProjectData[];
+    results?: ProjectData[];
   };
 }
 
-export default function Projects({ projects: { results } }: IProjects) {
-  return (
-    <Layout title="프로젝트">
-      <div className="mb-10 flex min-h-screen flex-col items-center justify-center px-6">
-        <h1 className="text-4xl font-bold sm:text-3xl">
-          <span>총 프로젝트 : </span>
-          <span className="text-blue-500">
-            {results.length !== 0 ? results.length : 0}
-          </span>
-        </h1>
-        <div className="grid grid-cols-1 gap-8 py-10 md:mx-10 md:grid-cols-2 lg:w-[75vw] lg:grid-cols-3">
-          {results.map((project) => (
-            <ProjectItem data={project} key={project.id} />
-          ))}
-        </div>
-      </div>
-    </Layout>
-  );
-}
-
-export async function getServerSideProps() {
+async function getProjects() {
   const options = {
     method: 'POST',
     headers: {
@@ -96,11 +76,31 @@ export async function getServerSideProps() {
     `https://api.notion.com/v1/databases/${process.env.NOTION_DB_ID}/query`,
     options
   );
-  const projects: IProjects = await response.json();
+  const projects: Projects = await response.json();
 
-  return {
-    props: {
-      projects,
-    },
-  };
+  return projects;
+}
+
+export default async function Projects() {
+  const { projects }: Projects = await getProjects();
+
+  if (!projects) return;
+  const { results } = projects;
+
+  return (
+    <div className="mb-10 flex min-h-screen flex-col items-center justify-center px-6">
+      <h1 className="text-4xl font-bold sm:text-3xl">
+        <span>총 프로젝트 : </span>
+        <span className="text-blue-500">
+          {results?.length !== 0 ? results?.length : 0}
+        </span>
+      </h1>
+      <div className="grid grid-cols-1 gap-8 py-10 md:mx-10 md:grid-cols-2 lg:w-[75vw] lg:grid-cols-3">
+        {results?.length &&
+          results?.map((project) => (
+            <ProjectItem data={project} key={project.id} />
+          ))}
+      </div>
+    </div>
+  );
 }

@@ -17,8 +17,8 @@ export default function Hero() {
           try-hard chambray.
         </p>
         <div className="flex justify-center">
-          <Link href="/projects">
-            <a className="go-project-btn">프로젝트 보러 가기</a>
+          <Link href="/projects" className="go-project-btn">
+            프로젝트 보러 가기
           </Link>
         </div>
       </div>
