@@ -48,7 +48,7 @@ export interface ProjectData {
 
 interface Projects {
   projects: {
-    results?: ProjectData[];
+    results: ProjectData[];
   };
 }
 
@@ -72,35 +72,41 @@ async function getProjects() {
     }),
   };
 
-  const response = await fetch(
-    `https://api.notion.com/v1/databases/${process.env.NOTION_DB_ID}/query`,
-    options
-  );
-  const projects: Projects = await response.json();
+  try {
+    const response = await fetch(
+      `https://api.notion.com/v1/databases/${process.env.NOTION_DB_ID}/query`,
+      options
+    );
+    const projects: Projects = await response.json();
 
-  return projects;
+    return projects;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export default async function Projects() {
-  const { projects }: Projects = await getProjects();
-
-  if (!projects) return;
-  const { results } = projects;
+  const data = await getProjects();
 
   return (
-    <div className="mb-10 flex min-h-screen flex-col items-center justify-center px-6">
-      <h1 className="text-4xl font-bold sm:text-3xl">
-        <span>총 프로젝트 : </span>
-        <span className="text-blue-500">
-          {results?.length !== 0 ? results?.length : 0}
-        </span>
-      </h1>
-      <div className="grid grid-cols-1 gap-8 py-10 md:mx-10 md:grid-cols-2 lg:w-[75vw] lg:grid-cols-3">
-        {results?.length &&
-          results?.map((project) => (
-            <ProjectItem data={project} key={project.id} />
-          ))}
-      </div>
-    </div>
+    <>
+      {data && (
+        <div className="mb-10 flex min-h-screen flex-col items-center justify-center px-6">
+          <h1 className="text-4xl font-bold sm:text-3xl">
+            <span>총 프로젝트 : </span>
+            <span className="text-blue-500">
+              {data.projects?.results?.length !== 0
+                ? data.projects?.results?.length
+                : 0}
+            </span>
+          </h1>
+          <div className="grid grid-cols-1 gap-8 py-10 md:mx-10 md:grid-cols-2 lg:w-[75vw] lg:grid-cols-3">
+            {data.projects?.results?.map((project) => (
+              <ProjectItem data={project} key={project.id} />
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
