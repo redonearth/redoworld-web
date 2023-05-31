@@ -53,7 +53,7 @@ interface Projects {
 }
 
 async function getProjects() {
-  const options = {
+  const options: RequestInit = {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -70,6 +70,7 @@ async function getProjects() {
       ],
       page_size: 100,
     }),
+    cache: 'no-store',
   };
 
   try {
@@ -89,24 +90,20 @@ export default async function Projects() {
   const data = await getProjects();
 
   return (
-    <>
-      {data && (
-        <div className="mb-10 flex min-h-screen flex-col items-center justify-center px-6">
-          <h1 className="text-4xl font-bold sm:text-3xl">
-            <span>총 프로젝트 : </span>
-            <span className="text-blue-500">
-              {data.projects?.results?.length !== 0
-                ? data.projects?.results?.length
-                : 0}
-            </span>
-          </h1>
-          <div className="grid grid-cols-1 gap-8 py-10 md:mx-10 md:grid-cols-2 lg:w-[75vw] lg:grid-cols-3">
-            {data.projects?.results?.map((project) => (
-              <ProjectItem data={project} key={project.id} />
-            ))}
-          </div>
-        </div>
-      )}
-    </>
+    <div className="mb-10 flex min-h-screen flex-col items-center justify-center px-6">
+      <h1 className="text-4xl font-bold sm:text-3xl">
+        <span>총 프로젝트 : </span>
+        <span className="text-blue-500">
+          {data?.projects?.results?.length !== 0
+            ? data?.projects?.results?.length
+            : 0}
+        </span>
+      </h1>
+      <div className="grid grid-cols-1 gap-8 py-10 md:mx-10 md:grid-cols-2 lg:w-[75vw] lg:grid-cols-3">
+        {data?.projects?.results?.map((project) => (
+          <ProjectItem data={project} key={project.id} />
+        ))}
+      </div>
+    </div>
   );
 }
